@@ -1,0 +1,180 @@
+\documentclass[11pt]{ctexart}
+\usepackage{fancyhdr}
+
+% 清除页眉内容并去掉页眉横线
+\fancyhf{} % 清空所有页眉页脚
+\renewcommand{\headrulewidth}{0pt} % 去掉页眉横线
+\pagestyle{fancy} % 应用设置
+\usepackage{graphicx}
+\usepackage{fix-cm}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{geometry}
+\linespread{1.5}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\title{电磁学笔记}
+\author{CCY}
+\date{\today}
+\begin{document}
+\tableofcontents%生成目录
+\newpage%新建页，内容和目录分开
+\maketitle
+\section{基本的电磁现象}
+\subsection{电荷与电场}
+\subsection{导体与电介质}
+\subsection{电流场的描述}
+\subsection{磁场}
+\subsection{磁矩}
+\newpage
+\section{电场}
+\subsection{高斯定理}
+\subsection{电场的散度}
+\subsection{静电场的电势}
+\subsection{静电势能和电场中的能量}
+\subsubsection{电荷在外电场的静电势能}
+\subsubsection{带点体系的静电能}
+电势能存储在电场中:类比弹簧：势能储存在弹簧中，压缩弹簧，能量
+被存储到弹簧中；两个正电荷相互靠近，电场发生改变，电势能存储
+到电场中；      不同之处：弹簧的弹性势能与两端的质量块无关，
+电势能与电场强度有关
+
+静电势能<-->电势<-->做功<-->电场力：
+体系的电势能：$E=\frac{1}{2} \int \rho(\vec{r})\phi(\vec{r})dV$
+=$\frac{1}{2} \sum q_iU_i$=$\frac{1}{2} \iint \rho_e u \, d\tau $
+
+\noindent 例题：
+\begin{enumerate}
+    \item 均匀带电球壳带电量为Q,求它的电势能
+        
+    解：在空间中，将电荷不断从无穷远处移动到球壳上，使球壳的带电量从0增加至Q,在这个过程中，外力做的功即为体系的电势能：
+
+    运用公式求解：$U=\frac{1}{4 \pi \varepsilon_0} \frac{Q}{R}$
+    
+    $W=\frac{1}{2}Q U =\frac{1}{8 \pi \varepsilon_0} \frac{Q^2}{R}$
+
+    \item 均匀带电球体，半径为$R$，电荷密度为$\rho$，求它的电势能
+    
+    解：利用公式求解：
+
+    $\vec{E}=\begin{cases}
+        \frac{1}{4 \pi \varepsilon_0} \frac{Q}{r^2} & r<R \\
+        \frac{1}{4 \pi \varepsilon_0} \frac{Q}{R^3}  r & r>R
+    \end{cases}$
+   \vspace{10pt}
+   \begin{spacing}{2.0}
+
+    $U=\frac{1}{4 \pi \varepsilon_0} (\int_r^R \vec{E} dx+ \int_R ^\infty \vec{E} dx)
+    =\frac{1}{4 \pi \varepsilon_0 R^3} \int_r^R x dx+ \int_R ^\infty \frac{R^3}{x^2} dx
+    =\frac{Q}{4 \pi \varepsilon_0 R^3}(-\frac{x}{R^3} \mid_R^\infty + \frac{1}{2} x^2\mid_r^R)
+    =\frac{Q}{4 \pi \varepsilon_0 R ^3} \frac{3R^2-r^2}{2}$
+    
+    $ E_\phi =\frac{1}{2} \int \rho u d\tau$
+
+    $= \frac{1}{4} \frac{Q}{4 \pi \varepsilon_0 R^3} \frac{3Q}{4 \pi R^3} \int_{\Omega} (3R^2-r^2)dV$
+
+   \end{spacing}
+   \vspace{10pt}
+    $=\frac{3 Q^2}{20 \pi \varepsilon_0 R }$
+    
+
+\end{enumerate}
+\subsubsection{电场的能量}
+在某一带电球壳周围存在伴存电场，假设其等势面是一系列封闭曲面，空间被这些等势面划分成许多薄层，如图所示：
+
+将带点球壳每一部分从无穷远处移动到原处，在移动dx段距离的过程中，只有这一部分的电场发生了变化，故外力所做的功存储在这一部分空间中
+两等势面的电势差为$dU$,每一薄层的电能$dW=\frac{1}{2} QdU$,整个电场的能量$W=\frac{1}{2}Q \int dU=\frac{1}{2}QU_0$
+
+根据高斯定理有：$\oint \vec{E}dS=\frac{1}{\varepsilon_0} Q$
+
+设$dl$和$dS$的方向一致（即指向S的外法线方向）则有：$dU=\vec{E} dl$
+
+所以：$W=\oint \frac{1}{2}\varepsilon_0 \vec{E} \cdot \vec{E}d\tau$
+
+所以单位体积内的电场能量为：
+\begin{equation}
+w_e=\frac{1}{2} \varepsilon_0 E^2
+\end{equation}
+
+$w_e$叫做电场的能量密度,虽然是由孤立带点等势面的特例得到，却对所有电场都适用
+
+例题：
+
+\begin{itemize}
+\item 有一个厚度为t的球壳，内半径为R，将无穷远处的一个点电荷移动到导体空腔圆心处，求在移动过程中外力所做的功
+
+解：
+
+方法一：
+
+    从初态到末态，可以看作只有导体所占空间处的电场消失了，用电场的能量密度求解：
+
+$W=\frac{1}{2} \varepsilon_0 \int_R^{R+t}\vec{E}^2 d\tau 
+=\frac{Q^2}{32 \pi^2 \varepsilon_0} \int_R^{R+t}\frac{1}{r^4} d\tau 
+=\frac{Q^2}{8 \pi \varepsilon_0}(\frac{1}{R+t}-\frac{1}{R})$
+
+方法二：
+    求移动后体系的静电能
+
+\end{itemize}
+\subsubsection{电子的经典半径}
+带电粒子和他的电场是不可分割的整体，若电场的能量为W,按狭义相对论粒子的质量为
+\begin{equation}
+m_{em}=\frac{W}{c^2}
+\end{equation}
+其中，$m_{em}$是粒子的电磁质量，$W$是电子的电场能量，$c$是光速。
+$W$与电荷的分布有关，
+
+假设粒子半径为$r_0$，电荷密度为$\rho$，电荷量为$q$，
+
+电荷均匀分布在球面上：
+\begin{equation}
+    m_{em}=\frac{1}{2} \frac{Q^2}{4 \pi \varepsilon_0 c^2 R}
+\end{equation}
+
+电荷均匀分布在球体上：
+\begin{equation}
+    m_{em}=\frac{3}{5} \frac{Q^2}{4 \pi \varepsilon_0 c^2 R}
+\end{equation}
+
+迄今还无法测知电荷的分布，作为一种估计，$m_{em}=\frac{Q^2}{4 \pi \epsilon_0 c^2 R}
+$
+由上式可得：
+\begin{equation}
+    R=\frac{Q^2}{4 \pi \varepsilon_0 c^2 m_{em}}
+\end{equation}
+粒子的电量是可以测得的，但是$m_{em}$是未知的
+
+电子的电荷量$q=-1.6 \times 10^{-19} C$，质量$m_e=9.1 \times 10^{-31} kg$，
+若将其全部估算为电磁质量，则
+\begin{equation}
+    R=\frac{(1.6 \times 10^{-19})^2}{4 \pi \varepsilon_0 c^2 m_e} \approx 2.82 \times 10^{-13} m
+\end{equation}
+即电子的经典半径，是根据宏观电磁学对电子半径的估计，不可能是准确的。
+
+\subsection{导体的静电平衡和电子的发射}
+\subsubsection{导体中的自由电子}
+势阱： 在导体中，电荷分布是均匀的，电场强度为0，电势是常数，
+
+逸出功：
+
+\subsubsection{静电平衡}
+均匀导体板在匀强电场中的情况
+
+不规则导体在电场中的情况
+
+导体有空腔的情况：空腔内部电场为0
+
+初始外电场为0，导体有空腔，空腔内有电荷：
+
+同上，但导体接地：
+
+同上，在导体外部有电荷：
+
+\section{电流场}
+\subsection{导体中的传导电流}
+\subsection{电源及其电动势}
+\subsection{电容}
+\subsection{电流场的连续性}
+
+
+\end{document}
